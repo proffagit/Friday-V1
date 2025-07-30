@@ -63,7 +63,7 @@ A completely **FREE** terminal-based AI chatbot using the Hugging Face API with 
 - ✅ **Permissions needed** - "Read" + "Inference Providers" access
 
 3. **Configure your API token:**
-   - Rename `.rename_me_to_env` to `.env` (this file contains all configuration options)
+   - Rename `.env_placeholder` to `.env` (this file contains all configuration options)
    - Edit the `.env` file and replace `your_huggingface_token_here` with your actual token
    - Example: `HUGGINGFACE_API_TOKEN=hf_your_actual_token_here`
 
@@ -267,14 +267,14 @@ Edit your .env file and change HUGGINGFACE_MODEL to:
 📁 Friday-V1/
 ├── 🐍 chat.py                    # Main chatbot application
 ├── 🎭 system_prompt.txt          # Friday's INTJ personality configuration
-├── ⚙️ .rename_me_to_env           # Template for environment variables (rename to .env)
+├── ⚙️ .env_placeholder           # Template for environment variables (rename to .env)
 ├── ⚙️ .env                       # Your actual configuration file (create from template)
 ├── 📋 requirements.txt           # Python dependencies
 ├── 📄 LICENSE                    # MIT License
 └── 📖 README.md                  # This documentation
 ```
 
-**Setup Note:** The `.rename_me_to_env` file is a template. Rename it to `.env` and add your actual API token and preferences.
+**Setup Note:** The `.env_placeholder` file is a template. Rename it to `.env` and add your actual API token and preferences.
 
 ## 🔧 Dependencies
 
@@ -293,7 +293,7 @@ Edit your .env file and change HUGGINGFACE_MODEL to:
 - ✅ Make sure you copied the full token
 
 **"HUGGINGFACE_API_TOKEN not found" error:**
-- ✅ Make sure you renamed `.rename_me_to_env` to `.env`
+- ✅ Make sure you renamed `.env_placeholder` to `.env`
 - ✅ Check `.env` file exists in project directory
 - ✅ Verify the line: `HUGGINGFACE_API_TOKEN=hf_your_token_here`
 - ✅ No quotes around the token value

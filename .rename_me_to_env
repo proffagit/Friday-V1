@@ -1,0 +1,21 @@
+# Hugging Face API Configuration
+# Get your free token at: https://huggingface.co/settings/tokens
+# Make sure to enable "Make calls to Inference Providers" permission
+HUGGINGFACE_API_TOKEN=your_huggingface_api_token_here
+
+# AI Model Configuration
+# Default: google/gemma-2-2b-it (recommended for beginners - fast and reliable)
+# Alternative models you can try:
+# HUGGINGFACE_MODEL=deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
+# HUGGINGFACE_MODEL=meta-llama/Meta-Llama-3.1-8B-Instruct
+# HUGGINGFACE_MODEL=microsoft/phi-4
+# HUGGINGFACE_MODEL=Qwen/Qwen2.5-7B-Instruct-1M
+# HUGGINGFACE_MODEL=Qwen/Qwen2.5-Coder-32B-Instruct
+HUGGINGFACE_MODEL=google/gemma-2-2b-it
+
+# Response Configuration
+# MAX_TOKENS: Maximum length of AI responses (50-500 recommended)
+MAX_TOKENS=150
+
+# TEMPERATURE: Creativity level (0.0 = very focused, 2.0 = very creative)
+TEMPERATURE=0.7

@@ -63,6 +63,7 @@ A completely **FREE** terminal-based AI chatbot using the Hugging Face API with 
 - ✅ **Permissions needed** - "Read" + "Inference Providers" access
 
 3. **Configure your API token:**
+   - Rename `.rename_me_to_env` to `.env` (this file contains all configuration options)
    - Edit the `.env` file and replace `your_huggingface_token_here` with your actual token
    - Example: `HUGGINGFACE_API_TOKEN=hf_your_actual_token_here`
 
@@ -73,12 +74,31 @@ curl -X GET "https://huggingface.co/api/whoami" -H "Authorization: Bearer YOUR_T
 ```
 If successful, you'll see your username. If not, regenerate your token.
 
-4. **Optional: Choose your AI model in `.env`:**
-   - `HUGGINGFACE_MODEL`: The AI model to use (default: google/gemma-2-2b-it)
-   - `MAX_TOKENS`: Maximum tokens in AI responses (default: 150)
-   - `TEMPERATURE`: Creativity level 0.0-2.0 (default: 0.7)
+4. **Configure your settings (optional):**
+   
+   The `.env` file contains several configuration options you can customize:
 
-5. **Optional: Customize Friday's personality:**
+   ```env
+   # Required: Your Hugging Face API token
+   HUGGINGFACE_API_TOKEN=hf_your_actual_token_here
+   
+   # AI Model Selection (default: google/gemma-2-2b-it)
+   HUGGINGFACE_MODEL=google/gemma-2-2b-it
+   
+   # Response Length (50-500 tokens recommended)
+   MAX_TOKENS=150
+   
+   # Creativity Level (0.0 = focused, 2.0 = very creative)
+   TEMPERATURE=0.7
+   ```
+
+   **Configuration Options Explained:**
+   - **`HUGGINGFACE_API_TOKEN`**: Your API token (required)
+   - **`HUGGINGFACE_MODEL`**: Which AI model to use (see model list below)
+   - **`MAX_TOKENS`**: Maximum response length (150 = ~1-2 paragraphs)
+   - **`TEMPERATURE`**: Controls creativity (0.7 is balanced, 0.3 for focused responses, 1.2 for creative responses)
+
+5. **Customize Friday's personality (optional):**
    - Edit `system_prompt.txt` to modify Friday's behavior and responses
    - The system prompt is automatically loaded when the chatbot starts
    - Changes take effect on next restart
@@ -168,14 +188,18 @@ You can switch between different AI models by editing the `HUGGINGFACE_MODEL` in
 
 ### 💡 **How to Switch Models:**
 
-1. Edit your `.env` file
-2. Uncomment the model you want to try
-3. Comment out the current `HUGGINGFACE_MODEL` line
-4. Restart the chatbot
+1. Open your `.env` file
+2. Find the line: `HUGGINGFACE_MODEL=google/gemma-2-2b-it`
+3. Comment it out by adding `#` at the beginning: `# HUGGINGFACE_MODEL=google/gemma-2-2b-it`
+4. Uncomment (remove `#` from) the model you want to try
+5. Save the file and restart the chatbot
 
-**Example:**
+**Example `.env` configuration:**
 ```env
+# Current model (commented out)
 # HUGGINGFACE_MODEL=google/gemma-2-2b-it
+
+# New model (uncommented/active)
 HUGGINGFACE_MODEL=deepseek-ai/DeepSeek-R1
 ```
 
@@ -240,13 +264,17 @@ Edit your .env file and change HUGGINGFACE_MODEL to:
 ## 📁 Project Structure
 
 ```
-📁 openai-api-test/
-├── 🐍 chat.py              # Main chatbot application
-├── 🎭 system_prompt.txt    # Friday's personality configuration
-├── ⚙️ .env                 # API token and settings (create this)
-├── 📋 requirements.txt     # Python dependencies
-└── 📖 README.md           # This file
+📁 Friday-V1/
+├── 🐍 chat.py                    # Main chatbot application
+├── 🎭 system_prompt.txt          # Friday's INTJ personality configuration
+├── ⚙️ .rename_me_to_env           # Template for environment variables (rename to .env)
+├── ⚙️ .env                       # Your actual configuration file (create from template)
+├── 📋 requirements.txt           # Python dependencies
+├── 📄 LICENSE                    # MIT License
+└── 📖 README.md                  # This documentation
 ```
+
+**Setup Note:** The `.rename_me_to_env` file is a template. Rename it to `.env` and add your actual API token and preferences.
 
 ## 🔧 Dependencies
 
@@ -265,6 +293,7 @@ Edit your .env file and change HUGGINGFACE_MODEL to:
 - ✅ Make sure you copied the full token
 
 **"HUGGINGFACE_API_TOKEN not found" error:**
+- ✅ Make sure you renamed `.rename_me_to_env` to `.env`
 - ✅ Check `.env` file exists in project directory
 - ✅ Verify the line: `HUGGINGFACE_API_TOKEN=hf_your_token_here`
 - ✅ No quotes around the token value

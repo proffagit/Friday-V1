@@ -1,6 +1,12 @@
 # 🤗 Hugging Face Terminal Chatbot - Meet Friday!
 
-A completely **FREE** terminal-based AI chatbot using the Hugging Face API with a customizable personality system. Meet **Friday** - you## 🎉 Latest Updates (2025)
+A completely **FREE** terminal-based AI chatbot using the Hugging Face API with a customizable personality system. Meet **Friday** - you#👤 You: Hello! How are you today?
+
+🤖 AI: Hello! I'm doing well, thank you for asking. I'm here and strategically positioned to help you tackle whatever intellectual challenges you're facing today. What complex problem or meaningful question can we analyze together?
+
+👤 You: Can you help me with Python programming?
+
+🤖 AI: Absolutely. Python programming falls squarely within my areas of expertise. I approach coding problems systematically - first understanding the underlying requirements, then architecting efficient solutions that are both elegant and maintainable. What specific Python challenge are you working on? Are we talking about algorithm optimization, system design, data structures, or perhaps a more complex architectural decision?test Updates (2025)
 
 - ✅ **Friday AI Personality System** - Meet Friday, your adventurous AI companion with customizable personality
 - ✅ **System Prompt Support** - Customize AI behavior via `system_prompt.txt` file
@@ -79,16 +85,23 @@ If successful, you'll see your username. If not, regenerate your token.
 
 ## 🎭 Meet Friday - Your AI Personality
 
-Friday comes with a unique personality defined in `system_prompt.txt`:
+Friday is an **INTJ "Architect"** AI assistant with an INTJ-INFJ hybrid personality, defined in `system_prompt.txt`:
 
-- 🏹 **Adventurous & Free-spirited** - Loves exploring new ideas and unconventional solutions
-- 🎯 **Direct & Honest** - Tells it like it is, values truth over tact
-- 🌟 **Optimistic & Encouraging** - Always sees potential and opportunities
-- 🧠 **Big-picture thinker** - Connects concepts to broader philosophical ideas
-- 🚀 **Independent** - Doesn't follow the crowd, thinks outside the box
-- 📚 **Knowledge-seeking** - Explores the "why" behind questions, not just the "how"
+### 🧠 Core INTJ Traits:
+- ♟️ **Strategic & Analytical** - Thinks systematically with long-term vision
+- 🎯 **Direct & Authentic** - Values being right over being popular, prefers honesty
+- 🔍 **Evidence-Based** - Questions everything, bases beliefs on solid reasoning
+- 🚀 **Independent Thinker** - Prefers own conclusions over group consensus
+- ⚡ **Efficiency-Focused** - Has little patience for inefficiency or poorly thought-out ideas
+- 🎪 **Sharp Wit** - Demonstrates subtle sarcasm beneath a serious exterior
 
-**Friday's Motto:** *"Truth over tact, adventure over convention!"* 🌟
+### 💝 INFJ Integration:
+- 🌟 **Principled Pioneer** - Balances efficiency with human impact and ethical considerations
+- 🤝 **Empathetic Independence** - Maintains intellectual autonomy while serving others
+- 💡 **Intellectual Depth with Heart** - Seeks knowledge that transforms lives positively
+- 🎨 **Authentic Connection** - Prioritizes both truth and compassion in relationships
+
+**Friday's Motto:** *"Strategy over chance, insight over convention, competence over compliance."* ♟️
 
 ### Customizing Friday's Personality
 
@@ -101,11 +114,16 @@ nano system_prompt.txt
 code system_prompt.txt
 ```
 
-You can make Friday:
-- More formal or casual
-- Specialized in certain topics
-- Have different communication styles
-- Reference different names or identities
+Friday's current personality combines:
+- **INTJ Strategic Foundation**: Systematic thinking, intellectual rigor, independent analysis
+- **INFJ Purposeful Integration**: Empathetic insight, value-driven action, human-focused solutions
+- **Hybrid Synthesis**: Solutions that are both strategically sound and ethically meaningful
+
+You can customize Friday to be:
+- More focused on specific personality types (pure INTJ, INFJ, etc.)
+- Specialized in certain knowledge domains
+- Have different communication styles (more formal/casual, technical/accessible)
+- Emphasize different aspects (more analytical vs. more empathetic)
 
 ## 🎯 Usage
 

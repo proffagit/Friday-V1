@@ -112,19 +112,54 @@ class HuggingFaceChatbot:
 
     def clarify_search_request(self, user_query: str) -> str:
         """
-        Use LLM to clarify and optimize the search query
+        Use LLM to clarify and optimize the search query using conversation context
         """
         try:
+            # First, extract relevant context from conversation history
+            context_extraction_instruction = """
+            Based on the conversation history and the current user query, extract the most relevant context that would help optimize a web search.
+            Focus on:
+            - Previous topics discussed that relate to the current query
+            - Specific details, names, or terms mentioned earlier
+            - Any clarifications or specifications from the conversation
+            - Context that would make the search more specific and accurate
+            
+            Return a brief summary (1-2 sentences) of the relevant context, or "No relevant context" if none exists.
+            """
+            
+            # Prepare conversation context (exclude system prompt and search contexts)
+            conversation_text = ""
+            for msg in self.conversation_history[1:]:  # Skip system prompt
+                if msg["role"] in ["user", "assistant"]:
+                    # Clean up any previous search contexts
+                    content = msg["content"]
+                    if "[WEB SEARCH CONTEXT]" in content:
+                        content = content.split("[WEB SEARCH CONTEXT]")[0].strip()
+                    if content.strip():
+                        conversation_text += f"{msg['role'].capitalize()}: {content}\n"
+            
+            # Get relevant context from conversation
+            relevant_context = get_llm_instruction_response(
+                query_instruction=context_extraction_instruction,
+                content=f"Conversation history:\n{conversation_text}\n\nCurrent query: {user_query}",
+                model=self.instruction_model,
+                max_tokens=150
+            )
+            
+            # Now optimize the search query with context
             clarification_instruction = """
-            Based on the user's query, create an optimized search query for web search engines. 
+            Based on the user's query and the relevant conversation context, create an optimized search query for web search engines. 
             Make it concise, specific, and likely to return relevant results. 
+            Use the context to add specificity and relevant terms that will improve search accuracy.
             Focus on the key information needed to answer the user's question.
             Return only the search query without explanations.
             """
             
+            query_with_context = f"User query: {user_query}\n\nRelevant context: {relevant_context}"
+            
             clarified_query = get_llm_instruction_response(
                 query_instruction=clarification_instruction,
-                content=user_query,
+                content=query_with_context,
                 model=self.instruction_model,
                 max_tokens=100
             )
@@ -185,9 +220,10 @@ class HuggingFaceChatbot:
             if needs_search:
                 print("🌐 Web search required - performing search...")
                 
-                # Clarify the search query
+                # Clarify the search query with conversation context
+                print("🧠 Analyzing conversation context for better search optimization...")
                 search_query = self.clarify_search_request(user_input)
-                print(f"🔎 Optimized search query: {search_query}")
+                print(f"🔎 Context-optimized search query: {search_query}")
                 
                 # Perform web search
                 search_results = web_search(search_query, num_results=3)

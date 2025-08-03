@@ -5,7 +5,7 @@ from huggingface_hub import InferenceClient
 # Load environment variables
 load_dotenv()
 
-def get_llm_instruction_response(query_instruction: str, content: str, model: str = None) -> str:
+def get_llm_instruction_response(query_instruction: str, content: str, model: str = None, max_tokens: int = None) -> str:
     """
     Get LLM instruction response using Hugging Face Inference API
     
@@ -13,6 +13,7 @@ def get_llm_instruction_response(query_instruction: str, content: str, model: st
         query_instruction (str): The instruction or prompt for the LLM
         content (str): The content to be processed by the LLM
         model (str, optional): Model to use. If None, uses HUGGINGFACE_INSTRUCTION_MODEL from .env
+        max_tokens (int, optional): Maximum tokens to generate. If None, uses MAX_TOKENS from .env
     
     Returns:
         str: The LLM response
@@ -29,7 +30,7 @@ def get_llm_instruction_response(query_instruction: str, content: str, model: st
     
     # Use provided model or fallback to instruction model environment variable
     model_name = model or os.getenv('HUGGINGFACE_INSTRUCTION_MODEL', 'Qwen/Qwen2.5-7B-Instruct-1M')
-    max_tokens = int(os.getenv('MAX_TOKENS', 150))
+    max_tokens = max_tokens or int(os.getenv('MAX_TOKENS', 150))
     temperature = float(os.getenv('TEMPERATURE', 0.5))
     
     # Initialize the Inference Client
@@ -57,7 +58,7 @@ def get_llm_instruction_response(query_instruction: str, content: str, model: st
         raise Exception(f"Failed to get LLM response: {str(e)}")
 
 
-def get_llm_instruction_response_bool(query_condition: str, content: str, model: str = None) -> bool:
+def get_llm_instruction_response_bool(query_condition: str, content: str, model: str = None, max_tokens: int = None) -> bool:
     """
     Get LLM instruction response and return a boolean based on the query condition
     
@@ -65,6 +66,7 @@ def get_llm_instruction_response_bool(query_condition: str, content: str, model:
         query_condition (str): The condition or question for the LLM to evaluate (should be answerable with yes/no or true/false)
         content (str): The content to be evaluated by the LLM
         model (str, optional): Model to use. If None, uses HUGGINGFACE_INSTRUCTION_MODEL from .env
+        max_tokens (int, optional): Maximum tokens to generate. If None, uses MAX_TOKENS from .env
     
     Returns:
         bool: True if the condition is met, False otherwise
@@ -81,7 +83,7 @@ def get_llm_instruction_response_bool(query_condition: str, content: str, model:
     
     # Use provided model or fallback to instruction model environment variable
     model_name = model or os.getenv('HUGGINGFACE_INSTRUCTION_MODEL', 'Qwen/Qwen2.5-7B-Instruct-1M')
-    max_tokens = int(os.getenv('MAX_TOKENS', 150))
+    max_tokens = max_tokens or int(os.getenv('MAX_TOKENS', 150))
     temperature = float(os.getenv('TEMPERATURE', 0.5))
     
     # Initialize the Inference Client
@@ -122,13 +124,14 @@ def get_llm_instruction_response_bool(query_condition: str, content: str, model:
         raise Exception(f"Failed to get LLM boolean response: {str(e)}")
 
 
-def get_llm_chat_response(messages: list, model: str = None) -> str:
+def get_llm_chat_response(messages: list, model: str = None, max_tokens: int = None) -> str:
     """
     Get LLM response using chat completions format
     
     Args:
         messages (list): List of message dictionaries with 'role' and 'content'
         model (str, optional): Model to use. If None, uses HUGGINGFACE_MODEL from .env
+        max_tokens (int, optional): Maximum tokens to generate. If None, uses MAX_TOKENS from .env
     
     Returns:
         str: The LLM response
@@ -145,7 +148,7 @@ def get_llm_chat_response(messages: list, model: str = None) -> str:
     
     # Use provided model or fallback to environment variable
     model_name = model or os.getenv('HUGGINGFACE_MODEL', 'google/gemma-2-2b-it')
-    max_tokens = int(os.getenv('MAX_TOKENS', 150))
+    max_tokens = max_tokens or int(os.getenv('MAX_TOKENS', 150))
     temperature = float(os.getenv('TEMPERATURE', 0.5))
     
     # Initialize the Inference Client
